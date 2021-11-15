@@ -2,7 +2,7 @@
 
 chmod +x  installjava.sh
 
-chmod +x installmaven.s
+chmod +x installmaven.sh
 
 chmod +x installjenkins.sh
 
@@ -14,4 +14,4 @@ chmod +x installDocker.sh
 
 ./installjenkins.sh
 
-./installDocker
+./installDocker.sh

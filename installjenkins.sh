@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo yum update
+sudo yum update -y
 
 sudo amazon-linux-extras install epel -y
 
@@ -10,7 +10,7 @@ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/j
 
 sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
-sudo yum install -y jenkins
+sudo yum install jenkins -y
 
 sudo service jenkins start
 

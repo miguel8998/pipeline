@@ -3,7 +3,7 @@ variable "cidr" {
 }
 
 variable "elastic_ip" {
-  default = "54.76.202.171"
+  default = "54.228.242.217"
 }
 
 variable "ami" {
@@ -11,5 +11,5 @@ variable "ami" {
 }
 
 variable "box_size" {
-  default = "t2.micro"
+  default = "t2.large"
 }
