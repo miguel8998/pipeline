@@ -8,6 +8,8 @@ chmod +x installjenkins.sh
 
 chmod +x installDocker.sh
 
+chmod +x installPip.sh
+
 ./installjava.sh
 
 ./installmaven.sh
@@ -15,3 +17,5 @@ chmod +x installDocker.sh
 ./installjenkins.sh
 
 ./installDocker.sh
+
+./installPip.sh
