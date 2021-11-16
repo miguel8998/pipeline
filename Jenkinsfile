@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Install dependancies") {
             steps {
-                sh './setup/installPip.sh'
+                sh 'sudo ./setup/installPip.sh'
                 sh 'pipenv sync'
             }
         }
