@@ -2,7 +2,7 @@
 
 cd /home/ec2-user/pipeline
 
-git pull
+git reset --hard
 
 cd app
 

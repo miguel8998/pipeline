@@ -3,13 +3,12 @@ pipeline {
     stages {
         stage("Install dependancies") {
             steps {
+                sh './setup/installPip.sh'
                 sh 'pipenv sync'
-                sh 'pipenv run python -m unittest discover -s tests -v'
             }
         }
         stage("Run test") {
             steps {
-                sh 'pipenv sync'
                 sh 'pipenv run python -m unittest discover -s tests -v'
             }
         }
