@@ -78,8 +78,8 @@ resource "aws_instance" "my_ec2" {
     ami = var.ami
     instance_type = var.box_size
     vpc_security_group_ids = [aws_security_group.my_default.id]
-    #user_data = file("/Users/miguel/Documents/pipeline/pipeline/initialScript.sh")
-    user_data = file("/Users/miguel/Documents/pipeline/pipeline/startApp.sh")
+    user_data = file("/Users/miguel/Documents/pipeline/pipeline/setup/initialScript.sh")
+    #user_data = file("/Users/miguel/Documents/pipeline/pipeline/setup/startApp.sh")
     key_name = aws_key_pair.my_key.key_name
     tags = {
         Name = "Miguel's box"

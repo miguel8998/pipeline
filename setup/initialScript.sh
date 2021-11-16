@@ -7,7 +7,7 @@ sudo yum install git -y
 
 git clone https://github.com/miguel8998/pipeline.git
 
-cd pipeline
+cd pipeline/setup
 ./installAll.sh
 
 cd ..
