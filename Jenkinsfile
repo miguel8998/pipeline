@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage("Install dependancies") {
+            steps {
+                sh 'pipenv sync'
+                sh 'pipenv run python -m unittest discover -s tests -v'
+            }
+        }
         stage("Run test") {
             steps {
                 sh 'pipenv sync'

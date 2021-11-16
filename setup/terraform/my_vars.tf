@@ -8,7 +8,7 @@ variable "elastic_ip" {
 
 variable "ami" {
   default = "ami-0ed961fa828560210"  #amazon linux
-  #default = "ami-0bad6ecf1d983fce0"  #My ami
+  #default = "ami-01b2b86c2373aa76b"  #My ami
 }
 
 variable "box_size" {

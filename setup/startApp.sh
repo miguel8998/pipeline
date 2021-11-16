@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd /home/ec2-user
-
-cd pipeline
+cd /home/ec2-user/pipeline
 
 git pull
 
@@ -21,5 +19,3 @@ docker run -p 5000:5000 my_image
 #sudo docker build -t test_app_img .
 
 #sudo docker run -dit -p 8081:8080 test_app_img
-
-cd ..
