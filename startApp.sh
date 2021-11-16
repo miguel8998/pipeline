@@ -2,18 +2,22 @@
 
 cd /home/ec2-user
 
-chmod +x pipeline/installPip.sh
-./pipeline/installPip.sh
+cd pipeline
+git pull
+chmod +x installPip.sh
+./installPip.sh
+cd ..
+
 
 git clone https://github.com/miguel8998/test_app.git
 
-#cd test_app/01-python/src_complete/
+cd test_app/02-cicd/01-containerising-the-application/
 
-#pipenv sync
+docker build -t my_image .
+
+docker run -p 5000:5000 my_image
 
 #pipenv run python -m unittest discover -s tests -v
-
-#./run.sh
 
 #sudo mvn package
 
