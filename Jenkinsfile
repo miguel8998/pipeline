@@ -18,7 +18,7 @@ pipeline {
         }
         stage("Build Docker image") {
             steps {
-                sh 'docker build -t my_image .'
+                sh 'docker build -t my_image ./app'
             }
         }
         stage("Deploy container") {
