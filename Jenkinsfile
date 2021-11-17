@@ -6,11 +6,6 @@ pipeline {
     }
     agent any
     stages {
-        //stage("Install dependancies") {
-        //    steps {
-        //        sh './setup/installPip.sh'
-        //    }
-        //}
         stage("Run test") {
             steps {
                 sh '''
@@ -39,7 +34,7 @@ pipeline {
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
-                } 
+                }
             }
         }
         stage('Cleaning up') { 
@@ -49,5 +44,3 @@ pipeline {
         }
     }
 }
-
-
