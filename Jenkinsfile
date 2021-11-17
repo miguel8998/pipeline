@@ -1,16 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage("Install dependancies") {
-            steps {
-                sh './setup/installPip.sh'
-            }
-        }
-        stage("Run test") {
-            steps {
-                sh 'pipenv run python -m unittest discover -s tests -v'
-            }
-        }
+        //stage("Install dependancies") {
+        //    steps {
+        //        sh './setup/installPip.sh'
+        //    }
+        //}
+        //stage("Run test") {
+        //    steps {
+        //        sh 'pipenv run python -m unittest discover -s tests -v'
+        //    }
+        //}
         stage("StartDocker") {
             steps {
                 sh 'service docker start'
