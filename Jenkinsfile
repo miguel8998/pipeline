@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Build Docker image") {
             steps {
-                dir(app)
+                dir("app")
                 sh 'docker build -t miguellopez98/my_app .'
             }
         }
