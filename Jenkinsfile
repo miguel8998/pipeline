@@ -4,7 +4,6 @@ pipeline {
         stage("Install dependancies") {
             steps {
                 sh './setup/installPip.sh'
-                sh 'pipenv sync'
             }
         }
         stage("Run test") {
