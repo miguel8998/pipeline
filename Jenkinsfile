@@ -37,10 +37,10 @@ pipeline {
                 }
             }
         }
-        stage('Cleaning up') { 
-            steps { 
-                sh "docker rmi my_app" 
-            }
-        }
+        //stage('Cleaning up') { 
+        //    steps { 
+       //         sh "docker rmi my_app" 
+       //     }
+        //}
     }
 }
