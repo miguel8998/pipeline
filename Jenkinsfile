@@ -6,11 +6,12 @@ pipeline {
         //        sh './setup/installPip.sh'
         //    }
         //}
-        //stage("Run test") {
-        //    steps {
-        //        sh 'pipenv run python -m unittest discover -s tests -v'
-        //    }
-        //}
+        stage("Run test") {
+            steps {
+                sh '/usr/local/bin/pipenv sync'
+                sh '/usr/local/bin/pipenv run python -m unittest discover -s tests -v'
+            }
+        }
         stage("StartDocker") {
             steps {
                 sh 'service docker start'

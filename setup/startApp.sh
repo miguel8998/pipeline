@@ -8,9 +8,9 @@ cd app
 
 sudo service docker start
 
-docker build -t my_image .
+#docker build -t my_image .
 
-docker run -p 5000:5000 my_image
+#docker run -p 5000:5000 my_image
 
 #pipenv run python -m unittest discover -s tests -v
 
