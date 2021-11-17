@@ -22,12 +22,12 @@ pipeline {
         }
         stage("Build Docker image") {
             steps {
-                sh 'docker build -t miguellopez98/my_image ./app'
+                sh 'docker build -t miguellopez98/my_app ./app'
             }
         }
         stage('Deploy our image') {
             steps {
-                sh 'docker push miguellopez98/my_image'
+                sh 'docker push miguellopez98/my_app'
                 //script { 
                 //    docker.withRegistry( '', registryCredential ) { 
                 //        my_image.push() 
