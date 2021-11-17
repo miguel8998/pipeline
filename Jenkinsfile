@@ -17,7 +17,6 @@ pipeline {
         }
         stage("StartDocker") {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/My_Pipeline/app'
                 sh 'service docker start'
             }
         }
