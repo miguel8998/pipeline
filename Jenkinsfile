@@ -8,6 +8,7 @@ pipeline {
         //}
         stage("Run test") {
             steps {
+                sh 'pwd'
                 sh '/usr/local/bin/pipenv sync'
                 sh '/usr/local/bin/pipenv run python -m unittest discover -s tests -v'
             }
@@ -20,6 +21,11 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 sh 'docker build -t my_image ./app'
+            }
+        }
+        stage("Publish image") {
+            steps {
+
             }
         }
         stage("Deploy container") {
