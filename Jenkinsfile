@@ -33,7 +33,7 @@ pipeline {
         //}
         stage("Deploy container") {
             steps {
-                sh 'docker run -p 5000:5000 my_image'
+                sh 'docker run -d -p 5000:5000 my_image'
                 sh ''
             }
         }
