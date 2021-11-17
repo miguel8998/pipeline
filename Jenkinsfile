@@ -22,17 +22,14 @@ pipeline {
         }
         stage("Build Docker image") {
             steps {
-                script {
-                    cd app
-                    dockerImage = docker.build my_image
-                }
+                sh 'docker build -t my_image ./app'
             }
         }
         stage('Deploy our image') {
             steps {
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
+                        my_image.push() 
                     }
                 }
             }
