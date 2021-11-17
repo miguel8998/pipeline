@@ -20,29 +20,22 @@ pipeline {
                 sh 'service docker start'
             }
         }
-        stage("Build and Deploy Docker image") {
+        stage("Build Docker image") {
             steps {
-                node {
-                    checkout scm
-                    def customImage = docker.build("my_image")
-                    customImage.push()
-                }
-                //script {
-                //    dockerImage = docker.build app/my_app
-                //}
-                //sh 'docker build -t miguellopez98/my_app ./app'
+                dir(app)
+                sh 'docker build -t miguellopez98/my_app .'
             }
         }
-        //stage('Deploy our image') {
-         //   steps {
-                //sh 'docker push miguellopez98/my_app'
-        //        script { 
-         //           docker.withRegistry( '', registryCredential ) { 
-         //               dockerImage.push() 
-        //            }
-        //        }
-       //     }
-       // }
+        stage('Deploy our image') {
+            steps {
+                sh 'docker push miguellopez98/my_app'
+                //script { 
+                //    docker.withRegistry( '', registryCredential ) { 
+                //        my_image.push() 
+                //    }
+                //}
+            }
+        }
         //stage('Cleaning up') { 
         //    steps { 
        //         sh "docker rmi my_app" 
