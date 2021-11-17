@@ -8,9 +8,7 @@ pipeline {
         //}
         stage("Run test") {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/My_Pipeline/app/src'
-                sh 'ls'
-                sh '/usr/local/bin/pipenv sync'
+                sh 'cd /var/lib/jenkins/workspace/My_Pipeline/app/src && /usr/local/bin/pipenv sync'
                 sh '/usr/local/bin/pipenv run python -m unittest discover -s tests -v'
             }
         }
