@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo alias python=python3 >> /home/ec2-user/.bash_profile 
+sudo echo alias python=python3 >> /home/ec2-user/.bash_profile 
 
-source /home/ec2-user/.bash_profile
+sudo source /home/ec2-user/.bash_profile
 
-pip3 install pipenv
+sudo pip3 install pipenv

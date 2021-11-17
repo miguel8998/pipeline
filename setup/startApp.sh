@@ -2,7 +2,7 @@
 
 cd /home/ec2-user/pipeline
 
-git reset --hard
+git reset --hard  #Add this to pre image
 
 cd app
 
