@@ -27,8 +27,10 @@ pipeline {
             }
         }
         stage("Build Docker image") {
-            steps {
-                sh 'docker build -t my_image ./app'
+            steps { 
+                script { 
+                    dockerImage = docker.build -t my_image ./app 
+                }
             }
         }
         stage('Deploy our image') { 
@@ -38,6 +40,11 @@ pipeline {
                         dockerImage.push() 
                     }
                 } 
+            }
+        }
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi my_app" 
             }
         }
     }
