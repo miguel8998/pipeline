@@ -26,7 +26,6 @@ pipeline {
                     script {
                         dockerImage = docker.build my_image
                     }
-                    //sh 'docker build -t miguellopez98/my_app .'
                 }
             }
         }
@@ -39,10 +38,10 @@ pipeline {
                 }
             }
         }
-        //stage('Cleaning up') { 
-        //    steps { 
-       //         sh "docker rmi my_app" 
-       //     }
-        //}
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi miguellopez98/my_app" 
+            }
+        }
     }
 }
