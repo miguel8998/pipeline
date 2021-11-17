@@ -23,7 +23,10 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 dir("app") {
-                    sh 'docker build -t miguellopez98/my_app .'
+                    script {
+                        dockerImage = docker.build miguellopez98/my_app
+                    }
+                    //sh 'docker build -t miguellopez98/my_app .'
                 }
             }
         }
