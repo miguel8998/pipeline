@@ -14,26 +14,11 @@ provider "aws" {
 
 }
 
-resource "aws_security_group" "my_default" {
-    name = "Miguel_security_group"
+resource "aws_security_group" "prod_sc" {
+    name = "Prod_security_group"
     tags = {
-      Name = "Miguel_security_group"
+      Name = "Prod_security_group"
     }
-
-    ingress {
-        from_port = 8080
-        to_port = 8080
-        protocol = "tcp"
-        cidr_blocks = [ var.cidr ]
-    }
-
-    ingress {
-        from_port = 8081
-        to_port = 8081
-        protocol = "tcp"
-        cidr_blocks = [ var.cidr ]
-    }
-
 
     ingress {
         from_port = 22
@@ -70,18 +55,17 @@ resource "aws_key_pair" "my_key" {
 }
 
 resource "aws_eip_association" "eip_asoc" {
-    instance_id = aws_instance.my_ec2.id
+    instance_id = aws_instance.prod_ec2.id
     public_ip = var.elastic_ip
 }
 
-resource "aws_instance" "my_ec2" {
+resource "aws_instance" "prod_ec2" {
     ami = var.ami
     instance_type = var.box_size
-    vpc_security_group_ids = [aws_security_group.my_default.id]
-    #user_data = file("/Users/miguel/Documents/pipeline/pipeline/setup/initialScript.sh")
-    user_data = file("/Users/miguel/Documents/pipeline/pipeline/setup/startApp.sh")
+    vpc_security_group_ids = [aws_security_group.prod_sc.id]
+    user_data = file("/Users/miguel/Documents/pipeline/pipeline/setup/initialProd.sh")
     key_name = aws_key_pair.my_key.key_name
     tags = {
-        Name = "Miguel's box"
+        Name = "Prod box"
     }
 }

@@ -1,7 +1,7 @@
 pipeline {
     environment { 
-        my_image = "miguellopez98/my_app" 
-        registryCredential = 'docker_id' 
+        my_image = "631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo" 
+        registryCredential = 'aws' 
         dockerImage = '' 
     }
     agent any
@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy our image') {
             steps {
                 script { 
-                    docker.withRegistry( '', registryCredential ) { 
+                    docker.withRegistry( 'https://631692196381.dkr.ecr.eu-west-1.amazonaws.com', "ecr:eu-west-1:" + registryCredential ) { 
                         dockerImage.push() 
                     }
                 }
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi miguellopez98/my_app" 
+                sh "docker rmi 631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo" 
             }
         }
     }
