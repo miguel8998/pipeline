@@ -1,12 +1,8 @@
 #!/bin/bash
 
-cd /home/ec2-user/pipeline
+cd /home/ec2-user/pipeline/app
 
-git reset --hard  #Add this to pre image
-
-cd app
-
-sudo service docker start
+#sudo service docker start
 
 #docker build -t my_image .
 
