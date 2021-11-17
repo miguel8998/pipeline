@@ -23,11 +23,11 @@ pipeline {
                 sh 'docker build -t my_image ./app'
             }
         }
-        stage("Publish image") {
-            steps {
-
-            }
-        }
+        //stage("Publish image") {
+        //    steps {
+//
+        //    }
+        //}
         stage("Deploy container") {
             steps {
                 sh 'docker run -p 5000:5000 my_image'
