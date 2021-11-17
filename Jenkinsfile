@@ -22,16 +22,17 @@ pipeline {
         }
         stage("Build Docker image") {
             steps {
-                sh 'docker build -t my_image ./app'
+                sh 'docker build -t miguellopez98/my_image ./app'
             }
         }
         stage('Deploy our image') {
             steps {
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        my_image.push() 
-                    }
-                }
+                sh 'docker push miguellopez98/my_image'
+                //script { 
+                //    docker.withRegistry( '', registryCredential ) { 
+                //        my_image.push() 
+                //    }
+                //}
             }
         }
         //stage('Cleaning up') { 
