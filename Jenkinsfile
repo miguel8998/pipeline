@@ -14,7 +14,7 @@ pipeline {
         }
         stage("StartDocker") {
             steps {
-                sh 'sudo service docker start'
+                sh 'service docker start'
             }
         }
         stage("Build Docker image") {
