@@ -1,8 +1,8 @@
 pipeline {
     environment { 
-        registry = "miguellopez98/test_app_image" 
+        my_image = "miguellopez98/my_app" 
         registryCredential = 'docker_id' 
-        dockerImage = 'miguellopez98/my_app' 
+        dockerImage = '' 
     }
     agent any
     stages {
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 dir("app") {
                     script {
-                        dockerImage = docker.build miguellopez98/my_app
+                        dockerImage = docker.build my_image
                     }
                     //sh 'docker build -t miguellopez98/my_app .'
                 }
@@ -32,12 +32,11 @@ pipeline {
         }
         stage('Deploy our image') {
             steps {
-                sh 'docker push miguellopez98/my_app'
-                //script { 
-                //    docker.withRegistry( '', registryCredential ) { 
-                //        my_image.push() 
-                //    }
-                //}
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        my_image.push() 
+                    }
+                }
             }
         }
         //stage('Cleaning up') { 
