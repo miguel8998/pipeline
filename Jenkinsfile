@@ -47,7 +47,7 @@ pipeline {
             steps {
                 dir("setup/terraform_prod") {
                     sh '''
-                    terraform innit
+                    terraform init
                     terraform apply -auto-approve
                     '''
                 }
