@@ -1,10 +1,15 @@
+terraform_prod/.terraform
+terraform_prod/.terraform.lock.hcl
+terraform_prod/secrets.tf
+terraform_prod/terraform.tfstate
+terraform_prod/terraform.tfstate.backup
+terraform_prod/.terraform.tfstate.lock.info
+
 terraform/.terraform
 terraform/.terraform.lock.hcl
 terraform/secrets.tf
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/.terraform.tfstate.lock.info
-
-terraform_prod/secrets.tf
 
 .DS_Store
