@@ -19,6 +19,10 @@ data "aws_ecr_image" "app" {
   image_tag       = "latest"
 }
 
+data "aws_ecs_task_definition" "task_def" {
+  task_definition = "weather_task_prod"
+}
+
 resource "aws_ecs_task_definition" "weather_task" {
   family = "weather_task_prod"
   requires_compatibilities = [ "FARGATE" ]
@@ -48,7 +52,7 @@ resource "aws_ecs_service" "new_task" {
   name = "my_app_prod"
   launch_type = "FARGATE"
   cluster = "arn:aws:ecs:eu-west-1:631692196381:cluster/weather-cluster"
-  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather_task_prod:6"
+  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather_task_prod:${max(data.aws_ecs_task_definition.task_def.revision, data.aws_ecs_task_definition.task_def.revision)}"
   force_new_deployment = true
   desired_count = "1"
 
