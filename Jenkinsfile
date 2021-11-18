@@ -46,7 +46,7 @@ pipeline {
         stage('updating Prod Enviorment') {
             steps {
                 dir("setup/terraform_prod") {
-                    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+                    withCredentials(com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding) {
                         sh '''
                         terraform init
                         terraform apply -var="access_key=${AWS_ACCESS_KEY_ID}" -var="secret_key=${AWS_SECRET_ACCESS_KEY}" -auto-approve
