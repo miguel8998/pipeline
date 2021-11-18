@@ -29,6 +29,9 @@ data "aws_ecr_image" "app" {
 
 data "aws_ecs_task_definition" "task_def" {
   task_definition = "weather_task_prod"
+  depends_on = [
+    aws_ecs_task_definition.weather_task
+  ]
 }
 
 resource "aws_ecs_task_definition" "weather_task" {
