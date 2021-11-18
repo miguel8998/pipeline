@@ -1,3 +1,11 @@
+terraform {
+    required_providers {
+        aws = {
+            source = "hashicorp/aws"
+        }
+    }
+}
+
 # aws Access keys
 provider "aws" {
     access_key = var.access_key
@@ -6,11 +14,36 @@ provider "aws" {
 
 }
 
+resource "aws_ecs_task_definition" "weather_task" {
+  family = "weather_task_prod"
+  requires_compatibilities = [ "FARGATE" ]
+  task_role_arn = "arn:aws:iam::631692196381:role/ecsTaskExecutionRole"
+  network_mode = "awsvpc"
+  cpu = 512
+  memory = 1024
+  execution_role_arn = "arn:aws:iam::631692196381:role/ecsTaskExecutionRole"
+  container_definitions = jsonencode([
+    {
+      name      = "weather-container"
+      image     = "631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo"
+      cpu       = 10
+      memory    = 512
+      essential = true
+      portMappings = [
+        {
+          containerPort = 5000
+          hostPort      = 5000
+        }
+      ]
+    }
+  ])
+}
+
 resource "aws_ecs_service" "new_task" {
   name = "my_app_prod"
   launch_type = "FARGATE"
   cluster = "arn:aws:ecs:eu-west-1:631692196381:cluster/weather-cluster"
-  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather-task:1"
+  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather_task_prod:3"
   force_new_deployment = true
   desired_count = "1"
 
