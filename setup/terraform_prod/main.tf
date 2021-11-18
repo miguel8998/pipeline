@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "weather_task" {
   ])
 }
 
-resource "aws_ecs_service" "new_task" {
+resource "aws_ecs_service" "my_app_prod" {
   name = "my_app_prod"
   launch_type = "FARGATE"
   cluster = "arn:aws:ecs:eu-west-1:631692196381:cluster/weather-cluster"
@@ -75,4 +75,7 @@ resource "aws_ecs_service" "new_task" {
     security_groups = [ "sg-0a9915e38950324fe" ]
     assign_public_ip = true
   }
+  depends_on = [
+    aws_ecs_task_definition.weather_task
+  ]
 }
