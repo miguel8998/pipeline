@@ -43,5 +43,15 @@ pipeline {
                 sh "docker rmi 631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo" 
             }
         }
+        stage('updating Prod Enviorment') {
+            steps {
+                dir("setup/terraform_prod") {
+                    sh '''
+                    terraform innit
+                    terraform apply -auto-approve
+                    '''
+                }
+            }
+        }
     }
 }
