@@ -14,6 +14,11 @@ provider "aws" {
 
 }
 
+data "aws_ecr_image" "app" {
+  repository_name = "my_app_repo"
+  image_tag       = "latest"
+}
+
 resource "aws_ecs_task_definition" "weather_task" {
   family = "weather_task_prod"
   requires_compatibilities = [ "FARGATE" ]
@@ -25,7 +30,7 @@ resource "aws_ecs_task_definition" "weather_task" {
   container_definitions = jsonencode([
     {
       name      = "weather-container"
-      image     = "631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo"
+      image     = "631692196381.dkr.ecr.eu-west-1.amazonaws.com/my_app_repo@${data.aws_ecr_image.app.image_digest}"
       cpu       = 10
       memory    = 512
       essential = true
@@ -43,7 +48,7 @@ resource "aws_ecs_service" "new_task" {
   name = "my_app_prod"
   launch_type = "FARGATE"
   cluster = "arn:aws:ecs:eu-west-1:631692196381:cluster/weather-cluster"
-  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather_task_prod:3"
+  task_definition = "arn:aws:ecs:eu-west-1:631692196381:task-definition/weather_task_prod:6"
   force_new_deployment = true
   desired_count = "1"
 
