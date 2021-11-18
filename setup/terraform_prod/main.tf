@@ -11,7 +11,15 @@ provider "aws" {
     access_key = var.access_key
     secret_key = var.secret_key
     region = "eu-west-1"
+}
 
+variable "access_key" {
+  type = string
+  sensitive = true
+}
+variable "secret_key" {
+  type = string
+  sensitive = true
 }
 
 data "aws_ecr_image" "app" {
